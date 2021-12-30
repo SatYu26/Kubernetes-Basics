@@ -1,4 +1,4 @@
-# Kubernetes Concepts and Building a Cluster
+# Lab 1: Kubernetes Concepts and Building a Cluster
 
 To work with Kubernetes, you use Kubernetes API objects to describe your cluster’s desired state: what applications or other workloads you want to run, what container images they use, the number of replicas, what network and disk resources you want to make available, and more.<br>
 You set your desired state by creating objects using the Kubernetes API, typically via the command-line interface,`kubectl`. You can also use the Kubernetes API directly to interact with the cluster and set or modify your desired state.<br>

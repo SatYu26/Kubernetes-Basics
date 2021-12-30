@@ -1,4 +1,4 @@
-# Build a Kubernetes Application
+# Lab 2: Build a Kubernetes Application
 
 **Containers** allow you to package your application and its dependencies together into one succinct manifest that can be version controlled, allowing for easy replication of your application across developers on your team and machines in your cluster.
 Containers work best for service based architectures. As opposed to monolithic architectures, where every piece of the application is intertwined — from IO to data processing to rendering — service based architectures separate these into separate components.
@@ -225,11 +225,11 @@ cd petclinic-kubernetes
 
 Installation
 
-- Let's create an environment variable REPOSITORY_PREFIX that has the name of the repository which stores the Docker images for PetClinic services:
+- Let's create an environment variable REPOSITORY_PREFIX that has the name of the repository which stores the Docker images for PetClinic services:<br>
   `export REPOSITORY_PREFIX=ahmedgabercod`
-- Create the spring-petclinic namespace to contain all the resources we deploy for PetClinic:
+- Create the spring-petclinic namespace to contain all the resources we deploy for PetClinic:<br>
   `kubectl apply -f k8s/init-namespace/`
-- The PetClinic microservices communicate together by networking provided by the Kubernetes services which are going to be used by our deployments. Run the following command to create the services in the spring-petclinic namespace:
+- The PetClinic microservices communicate together by networking provided by the Kubernetes services which are going to be used by our deployments. Run the following command to create the services in the spring-petclinic namespace:<br>
   `kubectl apply -f k8s/init-services`
 - Our application services need a relational database in order to store customers, vets, and visits information. So we will use Helm to setup the MySQL backend for each service:
 - - Add the bitnami repository and update Helm:
@@ -239,22 +239,22 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
 helm repo update
 ```
 
-- - Install the database instance for the vets service:
+- - Install the database instance for the vets service:<br>
     `helm install vets-db-mysql bitnami/mysql --namespace spring-petclinic --version 6.14.3 --set db.name=service_instance_db`
-- - Install the database instance for the visits service:
+- - Install the database instance for the visits service:<br>
     `helm install visits-db-mysql bitnami/mysql --namespace spring-petclinic --version 6.14.3 --set db.name=service_instance_db`
-- - Install the database instance for the customers service:
+- - Install the database instance for the customers service:<br>
     `helm install customers-db-mysql bitnami/mysql --namespace spring-petclinic --version 6.14.3 --set db.name=service_instance_db`
 
-- Our deployment YAMLs have a placeholder called REPOSITORY_PREFIX so we'll be able to deploy the images from our repository by simply running a shell script:
+- Our deployment YAMLs have a placeholder called REPOSITORY_PREFIX so we'll be able to deploy the images from our repository by simply running a shell script:<br>
   `./scripts/deployToKubernetes.sh`
-- Verify the pods are deployed:
+- Verify the pods are deployed:<br>
   `watch kubectl get pods -n spring-petclinic`
 
 Once all Pods are in Running and Ready 1/1 state, visit the application from the tab in the left upper corner and explore the frontend:
 
 From the 'Owners' dropdown list, select 'Register' and enter the information to register a new customer
-Make sure the Telephone field contains no more than 10 numerical values without the '+' sign. e.g (7908645213)
+Make sure the Telephone field contains no more than 10 numerical values without the '+' sign. e.g (7908645xxx)
 From the 'Owners' dropdown list, select 'All' to verify the customer was added
 
 - You can verify the data persisted in the MySQL database by running a temporary container with the mysql:5.7 image and running the mysql binary to execute the query:
@@ -273,10 +273,10 @@ EOF
 
 You should be able to see the customer information that was added in the Database as well.
 
-- Scaling deployments horizontally by adding multiple instances of the Application to tolerate surge in traffic is important, and we can easily achieve that in Kubernetes with a single command:
+- Scaling deployments horizontally by adding multiple instances of the Application to tolerate surge in traffic is important, and we can easily achieve that in Kubernetes with a single command:<br>
   `kubectl scale deployments -n spring-petclinic {api-gateway,customers-service,vets-service,visits-service} --replicas=3`
 
-- Verify the deployments are scaled:
+- Verify the deployments are scaled:<br>
   `kubectl get pods -n spring-petclinic`
 
 # Introduction to Kubestr
@@ -295,7 +295,7 @@ Kubestr can assist in the following ways:
 
 To install the tool
 
-- Download the latest release:
+- Download the latest release:<br>
   `curl -sLO https://github.com/kastenhq/kubestr/releases/download/v0.4.17/kubestr-v0.4.17-linux-amd64.tar.gz`
 - Unpack the tool and make it an executable chmod +x kubestr.
 
@@ -344,6 +344,6 @@ stonewall
 EOF
 ```
 
-- - Run the following command to start the test
+- - Run the following command to start the test<br>
     `kubestr fio -f ssd-test.fio -s local-path`
     Additional options like --size and --fiofile can be specified.

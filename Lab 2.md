@@ -345,5 +345,5 @@ EOF
 ```
 
 - - Run the following command to start the test<br>
-    `kubestr fio -f ssd-test.fio -s local-path`
+    `kubestr fio -f ssd-test.fio -s local-path`<br>
     Additional options like --size and --fiofile can be specified.

@@ -1,7 +1,9 @@
 # The Kubecon + CloudNativeCon Special Edition Lab
 
-The various parts of the Kubernetes Control Plane, such as the kube-apiserver and kubelet processes, govern how Kubernetes communicates with your cluster. The Control Plane maintains a record of all of the Kubernetes Objects in the system, and runs continuous control loops to manage those objects’ state. At any given time, the Control Plane’s control loops will respond to changes in the cluster and work to make the actual state of all the objects in the system match the desired state that you provided.
+The various parts of the Kubernetes Control Plane, such as the kube-apiserver and kubelet processes, govern how Kubernetes communicates with your cluster. The Control Plane maintains a record of all of the Kubernetes Objects in the system, and runs continuous control loops to manage those objects’ state. At any given time, the Control Plane’s control loops will respond to changes in the cluster and work to make the actual state of all the objects in the system match the desired state that you provided.<br>
+
 <img src="images\control-plane.png">
+
 For example, when you use the Kubernetes API to create a Deployment object, you provide a new desired state for the system. The Kubernetes Control Plane records that object creation, and carries out your instructions by starting the required applications and scheduling them to cluster nodes–thus making the cluster’s actual state match the desired state.
 
 ## Kubernetes Control Plane
@@ -13,7 +15,9 @@ The “Control Plane” refers to a collection of processes managing the cluster
 ## Kubernetes Nodes
 
 The nodes in a cluster are the machines (VMs, physical servers, etc) that run your applications and cloud workflows. The Kubernetes Control Plane controls each node; you’ll rarely interact with nodes directly.
+<br>
 <img src="images\nodes.png">
+<br>
 
 Kubernetes contains a number of abstractions that represent the state of your system: deployed containerized applications and workloads, their associated network and disk resources, and other information about what your cluster is doing. These abstractions are represented by objects in the Kubernetes API.
 
@@ -34,7 +38,10 @@ In Kubernetes, this is generally referred to as replication. Replicated Pods are
 Containers in a pod run in the same Network namespace, so they share the same IP address and port space.
 
 All the containers in a pod also have the same loopback network interface, so a container can communicate with other containers in the same pod through localhost.
+
+<br>
 <img src="images\pods.svg">
+<br>
 
 A **Deployment** controller provides declarative updates for Pods and ReplicaSets.
 

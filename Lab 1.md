@@ -52,6 +52,10 @@ Containers in a pod run in the same Network namespace, so they share the same IP
 
 All the containers in a pod also have the same loopback network interface, so a container can communicate with other containers in the same pod through localhost.
 
+<br>
+<img src="images\pods.svg">
+<br>
+
 # Getting Started
 
 ### Step 1 - Set up each server in the cluster to run Kubernetes.
